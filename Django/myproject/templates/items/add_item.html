@@ -1,0 +1,38 @@
+<!-- templates/items/add_item.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Item</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Add a New Item</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/add-item/">Add New Item</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="add-item-form">
+            <h2>Enter Item Details</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Add Item</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Item List App</p>
+    </footer>
+</body>
+</html>

@@ -1,12 +1,28 @@
 version: '3'
 
 services:
+  django_app:
+    build: ./django_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=yourdbname
+      - DB_USER=youruser
+      - DB_PASSWORD=yourpassword
+      - DB_HOST=db
+
   flask_app:
     build: ./flask_app
     ports:
       - "5000:5000"
 
-  django_app:
-    build: ./django_app
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: yourdbname
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
     ports:
-      - "8000:8000"
+      - "5432:5432"
